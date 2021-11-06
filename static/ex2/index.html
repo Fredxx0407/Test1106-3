@@ -47,28 +47,28 @@
               );
               timerFlag = setTimeout(load_data, 30000); //Reload per 30 sec
             }
-            function load_data1()
-                        {
-                        $.get("/aqi/data/24h?sid=左營",
-                            function(data)
-                            {
-                            console.log(data);
-                            if (data.length==0)
-                                return;
+            function load_data()
+            {
+                $.get("/aqi/data/24h?sid=左營",
+                    function(data)
+                    {
+                        console.log(data);
+                        if (data.length==0)
+                            return;
                 
-                            if (data.result == "OK")
-                            {
-                                my_data = data.data;
-                                len = my_data.length;
-                                console.log(my_data, len);
-                                console.log(my_data[len-1])
-                                //#$("#station1").text(my_data.uuid);
-                                $("#aqi2").text("AQI = " + my_data[len-1]['aqi']);
-                            }                  
-                            }
-                        );
-                        timerFlag = setTimeout(load_data1, 30000); //Reload per 30 sec
-                        }
+                        if (data.result == "OK")
+                        {
+                            my_data = data.data;
+                             len = my_data.length;
+                            console.log(my_data, len);
+                            console.log(my_data[len-1])
+                            //#$("#station1").text(my_data.uuid);
+                            $("#aqi2").text("AQI = " + my_data[len-1]['aqi']);
+                        }                  
+                    }
+                );
+                timerFlag = setTimeout(load_data, 30000); //Reload per 30 sec
+            }
             function toYYYYMMDD(d) 
             {
               var yyyy = d.getFullYear().toString();
